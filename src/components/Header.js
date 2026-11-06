@@ -8,7 +8,13 @@ const Header = () => (
     </span>
     <ul className="main-nav">
       <li>
-        <NavLink to="/" end>
+        <NavLink
+          to="/"
+          end
+          style={({ isActive }) =>
+            isActive ? { background: "tomato" } : undefined
+          }
+        >
           Home
         </NavLink>
       </li>
