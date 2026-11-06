@@ -1,7 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const name = useRef();
+  const topic = useRef();
+  let navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let teacherName = name.current.value;
+    let teacherTopic = topic.current.value;
+    let path = `teachers/${teacherTopic}/${teacherName}`;
+    navigate(path);
+  };
   return (
     <div className="main-content home">
       <h2>Front End Course Directory</h2>
@@ -22,7 +33,11 @@ const Home = () => {
       </p>
       <hr />
       <h3>Featured Teachers</h3>
-      <Link to="teachers/HTML/Angie-McAngular">Angie McAngular </Link>
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="Name" ref={name} />
+        <input type="text" placeholder="Topic" ref={topic} />
+        <button type="submit">Go!</button>
+      </form>
     </div>
   );
 };
